@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Summary</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Billing Summary Section -->
+<div class="container mt-5">
+    <h2 class="text-center">Billing Summary</h2>
+
+    <!-- Print Button -->
+    <div class="text-right mb-3">
+        <button onclick="printBillingSummary()" class="btn btn-primary">Print Summary</button>
+    </div>
+
+    <!-- Table to display billing information -->
+    <div id="billing-summary" class="table-responsive mt-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+
+                    <th>Patient Name</th>
+                    <th>Patient ID</th>
+                    <th>Admission Date</th>
+                    <th>Discharge Date</th>
+                    <th>Service Description</th>
+                    <th>Total Amount</th>
+                    <th>Discount (%)</th>
+                    <th>Net Amount</th>
+                    <th>Payment Method</th>
+                    <th>Transaction ID</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example data row -->
+                  {% for i in hospite_billing_print1 %}
+                <tr>
+                    <td>{{i.patientName}}</td>
+                    <td>{{i.patientID}}</td>
+                    <td>{{i.admissionDate}}</td>
+                    <td>{{i.dischargeDate}}</td>
+                    <td>{{i.serviceDescription}}</td>
+                    <td>{{i.totalAmount}}</td>
+                    <td>{{i.discount}}</td>
+                    <td>{{i.netAmount}}</td>
+                    <td>{{i.paymentMethod}}</td>
+                    <td>{{i.transactionID}}</td>
+                </tr>
+                {% endfor %}
+                <!-- Additional rows would be generated dynamically here -->
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <a class="navbar-brand " href="{%url 'mainpage'%}">Hospital Billing</a>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start mt-5">
+  <div class="text-center p-3">
+    © 2023 Hospital Billing System
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Print Function -->
+<script>
+    function printBillingSummary() {
+        var printContents = document.getElementById('billing-summary').innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+</body>
+</html>

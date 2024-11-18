@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block hari %}
+<title>Doctor Appointment Booking</title>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 30rem;">
+        <div class="container mt-4">
+            <h2 class="text-center">Book an Appointment</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" class="form-control" name="patient_name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="doctorSelect">Select Doctor</label>
+                    <select class="form-control" name="doctorSelect" required>
+                        <option>Dr. John Doe</option>
+                        <option>Dr. Jane Smith</option>
+                        <option>Dr. Emily Davis</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Date</label>
+                    <input type="date" class="form-control" name="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Time</label>
+                    <input type="time" class="form-control" name="appointmentTime" required>
+                </div>
+                <button type="submit" name="accept" class="btn btn-primary">Submit</button>
+                <button type="submit" name="cancel" class="btn btn-danger">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

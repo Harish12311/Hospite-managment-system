@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+
+
+ {% block hari%}
+ <title>Login</title>
+   <div class="container mt-5">
+
+        <h2 class="mb-4 text-center">Patients Table</h2>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+
+                    <th>Patient Name</th>
+                    <th>Doctor Select</th>
+                    <th> Appointment Date</th>
+                    <th>Sppointment Time1</th>
+                    <th>request</th>
+                </tr>
+            </thead>
+            <tbody>
+             {% for i in userdata %}
+                 <tr>
+                     <td>{{i.patient_name}}</td>
+                    <td>{{i.doctorSelect}} </td>
+                    <td>{{i.appointmentDate}}</td>
+                    <td>{{i.appointmentTime}}</td>
+                      {%for smg in messages%}
+                     <td>{{sm}}</td>
+                     {% endfor %}
+                 </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+{% endblock %}
